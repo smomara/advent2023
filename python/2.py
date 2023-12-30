@@ -1,57 +1,50 @@
-COLOR_LIMITS = {
-    'red': 12,
-    'green': 13,
-    'blue': 14,
-}
+import re
+from collections import Counter
 
-def parse_line(line: str):
-    game_r = line.find(":") - 1
-    game_l = line.find(" ") + 1
-    game_num = int(line[game_l:game_r + 1])
+INPUT = [line.strip() for line in open('input/2.txt').readlines()]
 
-    handfuls = line[game_r + 3:].split("; ")
-    proc_handfuls = []
+def parse_grab(grab: str) -> tuple[int, int, int]:
+    counts: Counter[str] = Counter()
+    for count_color in grab.split(", "):
+        count, color = count_color.split()
+        counts[color] = int(count)
+    return counts["red"], counts["green"], counts["blue"]
 
-    for handful in handfuls:
-        handful = handful.split(" ")
-        handful = [(int(value), color.strip(',').strip('\n')) for value, color in zip(handful[0::2], handful[1::2])]
-        proc_handfuls.append(handful)
+def parse_line(line: str) -> tuple[int, tuple[tuple[int, int, int], ...]]:
+    m = re.search(r"^Game (\d+): (.*)", line)
+    assert m, line
+    game_number, grabs = m.groups()
 
-    return game_num, proc_handfuls
+    return int(game_number), tuple(parse_grab(g) for g in grabs.split("; "))
 
-def is_game_valid(handfuls):
-    for handful in handfuls:
-        for value, color in handful:
-            if value > COLOR_LIMITS[color]:
-                return False
-    return True
+def parse_line_1(line: str) -> int:
+    game_number, grabs = parse_line(line)
 
-def get_power(handfuls):
-    highest = {
-        'red': 0,
-        'green': 0,
-        'blue': 0,
-    }
-    for handful in handfuls:
-        for value, color in handful:
-            if value > highest[color]:
-                highest[color] = value
+    for r, g, b in grabs:
+        if r > 12 or g > 13 or b > 14:
+            return 0
+    return game_number
+
+def parse_line_2(line: str) -> int:
+    game_number, grabs = parse_line(line)
+
+    max_r, max_g, max_b = 0, 0, 0
+    for r, g, b in grabs:
+        max_r = max(max_r, r)
+        max_g = max(max_g, g)
+        max_b = max(max_b, b)
     
-    res = 1
-    for x in highest.values():
-        res *= x
-    return res
+    return max_r * max_g * max_b
 
-input_file = 'input/2.txt'
-    
-with open(input_file) as f:
-    data = f.readlines()
+def part1(lines: list[str]) -> int:
+    return sum(parse_line_1(line) for line in lines)
 
-total_score = 0
+def part2(lines: list[str]) -> int:
+    return sum(parse_line_2(line) for line in lines)
 
-for line in data:
-    game_num, handfuls = parse_line(line)
-    # part 1: total_score += game_num if is_game_valid(handfuls) else 0
-    total_score += get_power(handfuls)
+def main() -> None:
+    print(f"Part 1: {part1(INPUT)}")
+    print(f"Part 2: {part2(INPUT)}")
 
-print(total_score)
+if __name__ == "__main__":
+    main()
