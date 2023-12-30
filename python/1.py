@@ -1,5 +1,3 @@
-import re
-
 def replace(x: str):
     numbers = {
         'one': 'o1e',
@@ -17,7 +15,7 @@ def replace(x: str):
         x = x.replace(k, v)
     return x
 
-with open('../input/1.txt') as f:
+with open('input/1.txt') as f:
     data = f.readlines()
 
 data = [list(replace(line.strip())) for line in data]
