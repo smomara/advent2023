@@ -26,6 +26,22 @@ def is_game_valid(handfuls):
                 return False
     return True
 
+def get_power(handfuls):
+    highest = {
+        'red': 0,
+        'green': 0,
+        'blue': 0,
+    }
+    for handful in handfuls:
+        for value, color in handful:
+            if value > highest[color]:
+                highest[color] = value
+    
+    res = 1
+    for x in highest.values():
+        res *= x
+    return res
+
 input_file = 'input/2.txt'
     
 with open(input_file) as f:
@@ -35,6 +51,7 @@ total_score = 0
 
 for line in data:
     game_num, handfuls = parse_line(line)
-    total_score += game_num if is_game_valid(handfuls) else 0
+    # part 1: total_score += game_num if is_game_valid(handfuls) else 0
+    total_score += get_power(handfuls)
 
 print(total_score)
