@@ -49,8 +49,8 @@ def part2(lines: List[str]) -> int:
     return eval(**parse2(lines))
 
 def main() -> None:
-    print(part1(INPUT))
-    print(part2(INPUT))
+    print(f"Part 1: {part1(INPUT)}")
+    print(f"Part 2: {part2(INPUT)}")
 
 if __name__ == "__main__":
     main()

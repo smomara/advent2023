@@ -77,8 +77,8 @@ def part2(solver: Solver) -> int:
 
 def main() -> None:
     solver = Solver.parse(INPUT)
-    print(part1(solver))
-    print(part2(solver))
+    print(f"Part 1: {part1(solver)}")
+    print(f"Part 2: {part2(solver)}")
 
 if __name__ == "__main__":
     main()
