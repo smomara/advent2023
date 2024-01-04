@@ -1,6 +1,6 @@
 from typing import List
 
-INPUT = [line.strip() for line in open('input/9.txt').readlines()]
+INPUT = [line.strip() for line in open('input/09.txt').readlines()]
 
 def parse(lines: List[str]) -> List[List[int]]:
         return [[[int(x) for x in line.split(" ")]] for line in lines]

@@ -1,7 +1,7 @@
 from typing import Dict, List
 from functools import reduce
 
-INPUT = [line.strip() for line in open('input/6.txt').readlines()]
+INPUT = [line.strip() for line in open('input/06.txt').readlines()]
 
 def eval(time: int, distance: int) -> int:
     # TODO: improve speed, implement binary search

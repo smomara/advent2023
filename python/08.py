@@ -3,7 +3,7 @@ from itertools import cycle
 import numpy as np
 import re
 
-INPUT = [line.strip() for line in open('input/8.txt').readlines()]
+INPUT = [line.strip() for line in open('input/08.txt').readlines()]
 
 class Graph:
     def __init__(self) -> None:

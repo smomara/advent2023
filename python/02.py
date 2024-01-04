@@ -1,7 +1,7 @@
 import re
 from collections import Counter
 
-INPUT = [line.strip() for line in open('input/2.txt').readlines()]
+INPUT = [line.strip() for line in open('input/02.txt').readlines()]
 
 def parse_grab(grab: str) -> tuple[int, int, int]:
     counts: Counter[str] = Counter()

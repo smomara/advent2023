@@ -1,6 +1,6 @@
 import re
 
-INPUT = [line.strip() for line in open('input/1.txt').readlines()]
+INPUT = [line.strip() for line in open('input/01.txt').readlines()]
 
 def parse1(line: str) -> int:
     m = re.search(r"(\d)", line)

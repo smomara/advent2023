@@ -1,7 +1,7 @@
 from collections import Counter
 import re
 
-INPUT = [line.strip() for line in open('input/4.txt').readlines()]
+INPUT = [line.strip() for line in open('input/04.txt').readlines()]
 
 def parse_line(line: str) -> tuple[int, set[int], set[int]]:
     m = re.search(r"^Card\s+(\d+):\s+(\d+(?:\s+\d+)*)\s+\|\s+(\d+(?:\s+\d+)*)", line)

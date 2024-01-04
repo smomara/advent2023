@@ -1,6 +1,6 @@
 from typing import List, Tuple
 
-INPUT = [line.strip() for line in open('input/7.txt').readlines()]
+INPUT = [line.strip() for line in open('input/07.txt').readlines()]
 
 class Hand:
     def __init__(self, cards: str):

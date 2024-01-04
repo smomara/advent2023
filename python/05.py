@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 
-INPUT = [line.strip() for line in open('input/5.txt').readlines()]
+INPUT = [line.strip() for line in open('input/05.txt').readlines()]
 
 @dataclass(frozen=True)
 class Range:

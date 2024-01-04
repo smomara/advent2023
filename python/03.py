@@ -4,7 +4,7 @@ from operator import mul
 from dataclasses import dataclass
 from typing import Iterator
 
-INPUT = [line.strip() for line in open('input/3.txt').readlines()]
+INPUT = [line.strip() for line in open('input/03.txt').readlines()]
 
 BORDER = list(
     complex(x, y) 
