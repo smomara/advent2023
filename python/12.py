@@ -11,6 +11,7 @@ def parse(line: str) -> Tuple[str, Tuple[int, ...]]:
     pattern, groups = line.split()
     return pattern, tuple(map(int, groups.split(',')))
 
+# TODO optimize
 def count_arrangements(pattern: str, group_sizes: Tuple[int, ...]) -> int:
     pattern = [None if x == '?' else x == '.' for x in pattern]
     possibilities = product([True, False], repeat=pattern.count(None))
@@ -54,7 +55,13 @@ def part1(lines: list[str]) -> int:
     return sum(count_arrangements(*parse(line)) for line in lines)
 
 def part2(lines: list[str]) -> int:
-    return 0
+    total = 0
+    for line in lines:
+        pattern, group_sizes = parse(line)
+        pattern = pattern + ('?' + pattern) * 4
+        group_sizes = group_sizes * 5
+        total += count_arrangements(pattern, group_sizes)
+    return total
 
 def main() -> None:
     input = read_input(INPUT)
