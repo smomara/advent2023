@@ -1,4 +1,4 @@
-INPUT = [line.strip() for line in open('input/0.txt').readlines()]
+INPUT = [line.strip() for line in open('input/00.txt').readlines()]
 
 def part1(lines: list[str]) -> int:
     return 0
