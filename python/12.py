@@ -1,5 +1,6 @@
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 from itertools import product
+from functools import cache
 
 INPUT = 'input/12.txt'
 
@@ -24,11 +25,11 @@ def count_arrangements(pattern: str, group_sizes: Tuple[int, ...]) -> int:
             if temp_pattern[i] is None:
                 temp_pattern[i] = possibility[pos_index]
                 pos_index += 1
-        if is_valid_pattern(temp_pattern, group_sizes):
+        if is_valid_pattern(str(temp_pattern), group_sizes):
             valid_count += 1
     return valid_count
 
-def is_valid_pattern(pattern, group_sizes):
+def is_valid_pattern(pattern: str, group_sizes: Tuple[int, ...]):
     current_group_size = 0
     for size in group_sizes:
         found = False
@@ -49,7 +50,7 @@ def is_valid_pattern(pattern, group_sizes):
                 return False
         if not found:
             return False
-    return all(pattern[current_group_size:])
+    return all(pattern[current_group_size])
 
 def part1(lines: list[str]) -> int:
     return sum(count_arrangements(*parse(line)) for line in lines)
